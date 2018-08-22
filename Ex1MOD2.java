@@ -7,14 +7,40 @@ class Mergesort {
     // l.add(200);
 
     static void split(LinkedList<Integer> l, LinkedList<Integer> l1, LinkedList<Integer> l2) {
-        // a ser completada
-        
-        
+        int i;
+        for(i = 0;i<(l.size())/2;i++){
+            l1.add(l.get(i));
+        }        
+        for(int j = i; j < l.size(); j++){
+            l2.add(l.get(j));
+        }
     }
 
-    static LinkedList<Integer> merge(LinkedList<Integer> l1,
-                                     LinkedList<Integer> l2) {
-        return null; // a ser completada
+    static LinkedList<Integer> merge(LinkedList<Integer> l1, LinkedList<Integer> l2) {
+        LinkedList<Integer> l = new LinkedList();
+        int p1=0, p2=0;
+        
+        for(int i = 0; i < (l1.size()+l2.size()); i++){
+            if(p1 == l1.size() || p2 == l2.size()){
+                if(p1 == l1.size()){
+                    l.add(l2.get(p2));
+                    p2++;
+                }else{
+                    l.add(l1.get(p1));
+                    p1++;
+                }
+            }else{
+                if(l1.get(p1) < l2.get(p2)){
+                    l.add(l1.get(p1));
+                    p1++;
+                }else{
+                    l.add(l2.get(p2));
+                    p2++;
+                }
+            }
+            
+        }
+        return l; 
     }
 
     static LinkedList<Integer> mergesort(LinkedList<Integer> l) {
@@ -30,7 +56,7 @@ class Mergesort {
     }
 }
 
-// A classe Ex1 È fornecida fournie, para testar o cÛdigo de Mergesort
+// A classe Ex1 √© fornecida fournie, para testar o c√≥digo de Mergesort
 class Ex1 {
 
     static boolean is_sorted(LinkedList<Integer> l) {
@@ -43,7 +69,7 @@ class Ex1 {
         return true;
     }
 
-    static final int M = 10; // os elementos est„o entre 0..M-1
+    static final int M = 10; // os elementos est√£o entre 0..M-1
 
     static int[] occurrences(LinkedList<Integer> l) {
         int[] occ = new int[M];
